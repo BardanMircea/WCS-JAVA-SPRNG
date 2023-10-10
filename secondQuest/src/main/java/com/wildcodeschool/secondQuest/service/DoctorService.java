@@ -19,7 +19,7 @@ public class DoctorService {
         if(incarnationNumber < 11 && incarnationNumber > 0){
             throw new ResponseStatusException(HttpStatus.SEE_OTHER);
         }
-        if(incarnationNumber > 15){
+        if(incarnationNumber > 15 || incarnationNumber <= 0){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Impossible to retrieve the incarnation " + incarnationNumber);
         }
         return this.doctorRepository.getDoctor(incarnationNumber);
