@@ -8,8 +8,6 @@ import java.util.List;
 
 @Component
 public class DoctorRepository {
-
-
     private final List<Doctor> theDoctors = new ArrayList<>();
 
     public DoctorRepository(){
@@ -23,7 +21,10 @@ public class DoctorRepository {
     public Doctor getDoctorByIncarnationNumber(int incarnationNumber) {
         Doctor theDoctor = null;
         for(Doctor doc : theDoctors) {
-           if (doc.getNumber() == incarnationNumber) theDoctor = doc;
+           if (doc.getNumber() == incarnationNumber) {
+               theDoctor = doc;
+               break;
+           }
         }
         return theDoctor;
     }
