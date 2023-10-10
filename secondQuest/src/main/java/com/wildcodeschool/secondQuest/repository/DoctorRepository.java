@@ -20,7 +20,7 @@ public class DoctorRepository {
         this.theDoctors.add(new Doctor(15,"Ncuti Gatwa"));
     }
 
-    public Doctor getDoctor(int incarnationNumber) {
+    public Doctor getDoctorByIncarnationNumber(int incarnationNumber) {
         Doctor theDoctor = null;
         for(Doctor doc : theDoctors) {
            if (doc.getNumber() == incarnationNumber) theDoctor = doc;

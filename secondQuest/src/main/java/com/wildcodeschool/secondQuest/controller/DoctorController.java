@@ -20,7 +20,7 @@ public class DoctorController {
 
     @GetMapping("/{incarnationNumber}")
     @ResponseBody
-    public Doctor getDoctor(@PathVariable int incarnationNumber){
-        return this.doctorService.getDoctor(incarnationNumber);
+    public Doctor getDoctorByIncarnationNumber(@PathVariable int incarnationNumber){
+        return this.doctorService.getDoctorByIncarnationNumber(incarnationNumber);
     }
 }
