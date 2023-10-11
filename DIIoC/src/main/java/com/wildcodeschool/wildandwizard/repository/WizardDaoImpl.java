@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 @Repository
-public class WizardRepository implements WizardDao {
+public class WizardDaoImpl implements WizardDao {
 
     private static List<Wizard> wizards = new ArrayList<>(
             Arrays.asList(
