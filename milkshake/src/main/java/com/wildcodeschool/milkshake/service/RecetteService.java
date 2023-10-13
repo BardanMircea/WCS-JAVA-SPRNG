@@ -13,7 +13,7 @@ public interface RecetteService {
 
     public Optional<Recette> findById(long id);
 
-    public void save(Recette recette);
+    public void saveOrUpdate(Recette recette);
 
     public void deleteById(Long id);
 }

@@ -31,7 +31,13 @@ public class VendeurController {
 
     @PostMapping("")
     public void save(@RequestBody Vendeur vendeur){
-        this.vendeurService.save(vendeur);
+        this.vendeurService.saveOrUpdate(vendeur);
+    }
+
+    @PutMapping("/{id}")
+    public void update(@RequestBody Vendeur vendeur, @PathVariable long id){
+        vendeur.setId(id);
+        this.vendeurService.saveOrUpdate(vendeur);
     }
 
     @DeleteMapping("/{id}")

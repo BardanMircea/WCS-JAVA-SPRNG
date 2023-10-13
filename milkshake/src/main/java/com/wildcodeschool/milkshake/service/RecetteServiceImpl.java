@@ -28,7 +28,7 @@ public class RecetteServiceImpl implements RecetteService{
     }
 
     @Override
-    public void save(Recette recette){
+    public void saveOrUpdate(Recette recette){
         this.recetteRepository.save(recette);
     }
 

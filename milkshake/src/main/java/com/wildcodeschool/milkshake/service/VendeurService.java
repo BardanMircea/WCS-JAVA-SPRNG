@@ -10,7 +10,7 @@ public interface VendeurService {
 
     public Optional<Vendeur> findById(long id);
 
-    public void save(Vendeur vendeur);
+    public void saveOrUpdate(Vendeur vendeur);
 
     public void deleteById(Long id);
 }

@@ -27,7 +27,7 @@ public class VendeurServiceImpl implements VendeurService{
     }
 
     @Override
-    public void save(Vendeur vendeur){
+    public void saveOrUpdate(Vendeur vendeur){
         this.vendeurRepository.save(vendeur);
     }
 
