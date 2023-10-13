@@ -14,5 +14,5 @@ public interface BookService {
 
     void deleteById(long id);
 
-    List<Book> findByTitleContainingOrDescriptionContaining(String searchText, String sameSearchText);
+    List<Book> findByTitleContainingOrDescriptionContaining(String searchText);
 }

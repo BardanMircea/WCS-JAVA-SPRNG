@@ -39,7 +39,7 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public List<Book> findByTitleContainingOrDescriptionContaining(String searchText, String sameSearchText) {
-        return this.bookRepository.findByTitleContainingOrDescriptionContaining(searchText, sameSearchText);
+    public List<Book> findByTitleContainingOrDescriptionContaining(String searchText) {
+        return this.bookRepository.findByTitleContainingOrDescriptionContaining(searchText, searchText);
     }
 }
