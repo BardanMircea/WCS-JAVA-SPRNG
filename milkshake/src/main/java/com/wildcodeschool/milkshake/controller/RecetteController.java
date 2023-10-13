@@ -29,7 +29,7 @@ public class RecetteController {
     }
 
     @PostMapping()
-    public void saveOrUpdate(@RequestBody Recette recette){
+    public void save(@RequestBody Recette recette){
         this.recetteService.saveOrUpdate(recette);
     }
 
