@@ -41,7 +41,7 @@ public class VendeurController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id){
+    public void deleteById(@PathVariable long id){
         this.vendeurService.deleteById(id);
     }
 }

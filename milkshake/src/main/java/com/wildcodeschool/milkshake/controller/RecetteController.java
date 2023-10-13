@@ -40,7 +40,7 @@ public class RecetteController {
    }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id){
+    public void deleteById(@PathVariable long id){
         this.recetteService.deleteById(id);
     }
 }
