@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class VendeurServiceImpl implements VendeurService{
-    private VendeurRepository vendeurRepository;
+    private final VendeurRepository vendeurRepository;
 
     public VendeurServiceImpl(@Autowired VendeurRepository vendeurRepository){
         this.vendeurRepository = vendeurRepository;

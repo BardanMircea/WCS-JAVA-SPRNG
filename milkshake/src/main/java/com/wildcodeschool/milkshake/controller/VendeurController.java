@@ -13,13 +13,13 @@ import java.util.Optional;
 @RequestMapping("/vendeurs")
 public class VendeurController {
 
-    private VendeurService vendeurService;
+    private final VendeurService vendeurService;
 
     public VendeurController(@Autowired VendeurService vendeurService){
         this.vendeurService = vendeurService;
     }
 
-    @GetMapping("")
+    @GetMapping()
     public List<Vendeur> findAll() {
         return this.vendeurService.findAll();
     }
@@ -29,7 +29,7 @@ public class VendeurController {
         return this.vendeurService.findById(id);
     }
 
-    @PostMapping("")
+    @PostMapping()
     public void save(@RequestBody Vendeur vendeur){
         this.vendeurService.saveOrUpdate(vendeur);
     }

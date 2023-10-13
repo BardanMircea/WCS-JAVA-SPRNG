@@ -12,13 +12,13 @@ import java.util.Optional;
 @RequestMapping("/recettes")
 public class RecetteController {
 
-    private RecetteService recetteService;
+    private final RecetteService recetteService;
 
     public RecetteController(@Autowired RecetteService recetteService){
         this.recetteService = recetteService;
     }
 
-    @GetMapping("")
+    @GetMapping()
     public List<Recette> findAll() {
         return this.recetteService.findAll();
     }
@@ -28,7 +28,7 @@ public class RecetteController {
         return this.recetteService.findById(id);
     }
 
-    @PostMapping("")
+    @PostMapping()
     public void saveOrUpdate(@RequestBody Recette recette){
         this.recetteService.saveOrUpdate(recette);
     }
