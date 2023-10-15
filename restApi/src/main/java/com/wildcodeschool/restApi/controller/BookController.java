@@ -46,8 +46,7 @@ public class BookController {
     }
 
     @PostMapping("/search")
-    public List<Book> findByTitleContainingOrDescriptionContaining(@RequestBody Map<String, String> body){
-        String searchText = body.get("text");
+    public List<Book> findByTitleContainingOrDescriptionContaining(@RequestParam String searchText){
         return this.bookService.findByTitleContainingOrDescriptionContaining(searchText);
     }
 }
