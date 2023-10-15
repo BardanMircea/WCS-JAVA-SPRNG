@@ -27,7 +27,8 @@ public class VendeurServiceImpl implements VendeurService{
     }
 
     @Override
-    public void saveOrUpdate(Vendeur vendeur){
+    public void saveOrUpdate(Vendeur vendeur, Long id){
+        Optional.ofNullable(id).ifPresent(vendeur::setId);
         this.vendeurRepository.save(vendeur);
     }
 

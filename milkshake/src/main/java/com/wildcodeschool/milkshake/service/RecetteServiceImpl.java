@@ -28,14 +28,13 @@ public class RecetteServiceImpl implements RecetteService{
     }
 
     @Override
-    public void saveOrUpdate(Recette recette){
+    public void saveOrUpdate(Recette recette, Long id){
+        Optional.ofNullable(id).ifPresent(recette::setId);
         this.recetteRepository.save(recette);
     }
 
     @Override
     public void deleteById(Long id){
-        Optional<Recette> toDelete = findById(id);
-        toDelete.ifPresent(recette -> this.recetteRepository.delete(recette));
+        findById(id).ifPresent(this.recetteRepository::delete);
     }
-
 }

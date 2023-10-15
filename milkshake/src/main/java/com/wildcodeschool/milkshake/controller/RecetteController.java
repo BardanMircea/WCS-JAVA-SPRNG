@@ -30,13 +30,12 @@ public class RecetteController {
 
     @PostMapping()
     public void save(@RequestBody Recette recette){
-        this.recetteService.saveOrUpdate(recette);
+        this.recetteService.saveOrUpdate(recette, null);
     }
 
    @PutMapping("/{id}")
    public void update(@RequestBody Recette recette, @PathVariable long id){
-        recette.setId(id);
-        this.recetteService.saveOrUpdate(recette);
+        this.recetteService.saveOrUpdate(recette, id);
    }
 
     @DeleteMapping("/{id}")

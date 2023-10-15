@@ -3,7 +3,6 @@ package com.wildcodeschool.milkshake.controller;
 import com.wildcodeschool.milkshake.entity.Vendeur;
 import com.wildcodeschool.milkshake.service.VendeurService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,13 +30,12 @@ public class VendeurController {
 
     @PostMapping()
     public void save(@RequestBody Vendeur vendeur){
-        this.vendeurService.saveOrUpdate(vendeur);
+        this.vendeurService.saveOrUpdate(vendeur, null);
     }
 
     @PutMapping("/{id}")
-    public void update(@RequestBody Vendeur vendeur, @PathVariable long id){
-        vendeur.setId(id);
-        this.vendeurService.saveOrUpdate(vendeur);
+    public void update(@RequestBody Vendeur vendeur, @PathVariable Long id){
+        this.vendeurService.saveOrUpdate(vendeur, id);
     }
 
     @DeleteMapping("/{id}")
