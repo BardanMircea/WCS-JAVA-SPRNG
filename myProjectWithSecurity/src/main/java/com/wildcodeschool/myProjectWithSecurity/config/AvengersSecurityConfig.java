@@ -24,7 +24,6 @@ public class AvengersSecurityConfig {
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/avengers/assemble").hasRole("CHAMPION")
                         .requestMatchers("/secret-bases").hasRole("DIRECTOR")
-                        .anyRequest().authenticated()
                 )
                 .httpBasic(withDefaults())
                 .formLogin(withDefaults());
