@@ -28,7 +28,8 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public void saveOrUpdate(Book book){
+    public void saveOrUpdate(Book book, Long id){
+        Optional.ofNullable(id).ifPresent(book::setId);
         this.bookRepository.save(book);
     }
 

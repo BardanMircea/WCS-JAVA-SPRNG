@@ -32,13 +32,12 @@ public class BookController {
 
     @PostMapping()
     public void save(@RequestBody Book book){
-        this.bookService.saveOrUpdate(book);
+        this.bookService.saveOrUpdate(book, null);
     }
 
     @PutMapping("/{id}")
-    public void update(@RequestBody Book book, @PathVariable long id){
-        book.setId(id);
-        this.bookService.saveOrUpdate(book);
+    public void update(@RequestBody Book book, @PathVariable Long id){
+        this.bookService.saveOrUpdate(book, id);
     }
 
     @DeleteMapping("/{id}")
