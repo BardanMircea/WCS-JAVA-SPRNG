@@ -35,8 +35,7 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public void deleteById(long id){
-        Optional<Book> toDelete = this.findById(id);
-        if (toDelete.isPresent()) this.bookRepository.deleteById(id);
+        this.findById(id).ifPresent(this.bookRepository::delete);
     }
 
     @Override
