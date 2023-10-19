@@ -19,22 +19,38 @@ public class RecetteServiceImpl implements RecetteService{
 
     @Override
     public List<Recette> findAll(){
-        return this.recetteRepository.findAll();
+        try {
+            return this.recetteRepository.findAll();
+        } catch(Exception e) {
+            throw new RuntimeException("Unexpected database server error");
+        }
     }
 
     @Override
     public Optional<Recette> findById(long id){
-        return this.recetteRepository.findById(id);
+        try {
+            return this.recetteRepository.findById(id);
+        } catch(Exception e) {
+            throw new RuntimeException("Unexpected database server error");
+        }
     }
 
     @Override
     public void saveOrUpdate(Recette recette, Long id){
-        Optional.ofNullable(id).ifPresent(recette::setId);
-        this.recetteRepository.save(recette);
+        try {
+            Optional.ofNullable(id).ifPresent(recette::setId);
+            this.recetteRepository.save(recette);
+        } catch(Exception e) {
+            throw new RuntimeException("Unexpected database server error");
+        }
     }
 
     @Override
     public void deleteById(Long id){
-        findById(id).ifPresent(this.recetteRepository::delete);
+        try {
+            findById(id).ifPresent(this.recetteRepository::delete);
+        } catch(Exception e) {
+            throw new RuntimeException("Unexpected database server error");
+        }
     }
 }
