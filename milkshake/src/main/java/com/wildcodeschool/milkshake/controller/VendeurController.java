@@ -1,8 +1,8 @@
 package com.wildcodeschool.milkshake.controller;
-
 import com.wildcodeschool.milkshake.entity.Vendeur;
 import com.wildcodeschool.milkshake.service.VendeurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,27 +19,60 @@ public class VendeurController {
     }
 
     @GetMapping()
-    public List<Vendeur> findAll() {
-        return this.vendeurService.findAll();
+    public ResponseEntity<?> findAll() {
+        try {
+            return ResponseEntity.ok(this.vendeurService.findAll());
+        } catch(RuntimeException e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")
-    public Optional<Vendeur> findById(@PathVariable long id){
-        return this.vendeurService.findById(id);
+    public ResponseEntity<?> findById(@PathVariable long id){
+        try{
+            Optional<Vendeur> vendeur = this.vendeurService.findById(id);
+            if (vendeur.isEmpty()) return ResponseEntity.status(404).body("Not found");
+
+            return ResponseEntity.ok(vendeur.get());
+        } catch(RuntimeException e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 
     @PostMapping()
-    public void save(@RequestBody Vendeur vendeur){
-        this.vendeurService.saveOrUpdate(vendeur, null);
+    public ResponseEntity<?> save(@RequestBody Vendeur vendeur){
+        try{
+            this.vendeurService.saveOrUpdate(vendeur, null);
+            return ResponseEntity.ok("Vendeur saved successfully");
+        } catch(RuntimeException e){
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 
     @PutMapping("/{id}")
-    public void update(@RequestBody Vendeur vendeur, @PathVariable Long id){
-        this.vendeurService.saveOrUpdate(vendeur, id);
+    public ResponseEntity<?> update(@RequestBody Vendeur vendeur, @PathVariable long id){
+        try{
+            if (this.vendeurService.findById(id).isEmpty())
+                return ResponseEntity.status(404).body("Not found");
+
+            this.vendeurService.saveOrUpdate(vendeur, id);
+            return ResponseEntity.ok("Vendeur updated successfully");
+        } catch(RuntimeException e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable long id){
-        this.vendeurService.deleteById(id);
+    public ResponseEntity<?> deleteById(@PathVariable long id){
+        try{
+            if (this.vendeurService.findById(id).isEmpty())
+                return ResponseEntity.status(404).body("Not found");
+
+            this.vendeurService.deleteById(id);
+            return ResponseEntity.ok().body("Vendeur deleted successfully");
+        } catch(RuntimeException e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 }

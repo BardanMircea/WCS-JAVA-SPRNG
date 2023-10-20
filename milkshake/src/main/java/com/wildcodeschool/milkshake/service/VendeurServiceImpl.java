@@ -1,5 +1,4 @@
 package com.wildcodeschool.milkshake.service;
-
 import com.wildcodeschool.milkshake.entity.Vendeur;
 import com.wildcodeschool.milkshake.repository.VendeurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +17,38 @@ public class VendeurServiceImpl implements VendeurService{
 
     @Override
     public List<Vendeur> findAll(){
-        return this.vendeurRepository.findAll();
+        try {
+            return this.vendeurRepository.findAll();
+        } catch(Exception e) {
+            throw new RuntimeException("Unexpected database server error");
+        }
     }
 
     @Override
     public Optional<Vendeur> findById(long id){
-        return this.vendeurRepository.findById(id);
+        try {
+            return this.vendeurRepository.findById(id);
+        } catch(Exception e) {
+            throw new RuntimeException("Unexpected database server error");
+        }
     }
 
     @Override
     public void saveOrUpdate(Vendeur vendeur, Long id){
-        Optional.ofNullable(id).ifPresent(vendeur::setId);
-        this.vendeurRepository.save(vendeur);
+        try {
+            Optional.ofNullable(id).ifPresent(vendeur::setId);
+            this.vendeurRepository.save(vendeur);
+        } catch(Exception e) {
+            throw new RuntimeException("Unexpected database server error");
+        }
     }
 
     @Override
     public void deleteById(Long id){
-        Optional<Vendeur> toDelete = findById(id);
-        toDelete.ifPresent(vendeur -> this.vendeurRepository.delete(vendeur));
+        try {
+            findById(id).ifPresent(this.vendeurRepository::delete);
+        } catch(Exception e) {
+            throw new RuntimeException("Unexpected database server error");
+        }
     }
 }
