@@ -27,11 +27,6 @@ public class UtilisateurController {
         return "Welcome all. Please log in using the POST http method on this endpoint";
     }
 
-    @GetMapping("/logout")
-    public String accessLogout(){
-        return "USER/ADMIN successfully logged out";
-    }
-
     @GetMapping("/content")
     public String accessContent(){
         return "Welcome, USER/ADMIN";

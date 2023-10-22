@@ -29,7 +29,7 @@ public class SecurityConfiguration{
                 .csrf(AbstractHttpConfigurer::disable)  // important
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/signup", "/login").permitAll()
-                        .requestMatchers("/logout", "/content").hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers("/content").hasAnyAuthority("USER", "ADMIN")
                         .requestMatchers("/admin-page").hasAuthority("ADMIN"))
                 .sessionManagement(session -> session
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
