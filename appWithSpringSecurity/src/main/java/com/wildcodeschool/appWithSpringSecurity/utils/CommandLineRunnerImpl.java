@@ -1,5 +1,6 @@
-package com.wildcodeschool.appWithSpringSecurity.service;
+package com.wildcodeschool.appWithSpringSecurity.utils;
 
+import com.wildcodeschool.appWithSpringSecurity.service.GeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -9,7 +10,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
     private final GeneratorService generatorService;
 
-    public CommandLineRunnerImpl(@Autowired  GeneratorService generatorService){
+    public CommandLineRunnerImpl(@Autowired GeneratorService generatorService){
             this.generatorService = generatorService;
     }
 
