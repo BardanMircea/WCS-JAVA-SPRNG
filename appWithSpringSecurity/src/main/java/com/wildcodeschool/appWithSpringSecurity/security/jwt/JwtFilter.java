@@ -36,15 +36,6 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(@NonNull HttpServletRequest request,
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
-        // Verify the requested path
-        String reqPath = request.getRequestURI();
-
-        // If it matches "/login" or "/signup" then just continue to the next filter
-        if ("/login".equals(reqPath) || "/signup".equals(reqPath)) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
         String authorizationHeader = request.getHeader("Authorization");
         if (authorizationHeader != null){
             String token = authorizationHeader.substring(7);
